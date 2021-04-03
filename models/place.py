@@ -4,7 +4,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Table, Column, Integer, ForeignKey, String, Float
 
 
-class Place(BaseModel):
+class Place(BaseModel, Base):
     """class Place inherits from BaseModel & Base"""
 
     __tablename__ = "places"
