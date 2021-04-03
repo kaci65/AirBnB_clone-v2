@@ -4,9 +4,8 @@ class DBStorage that connects AirBnB python classes with MySQL database
 """
 
 from os import getenv
+from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy import create_engine, Metadata
-from sqlalchemy.engine.url import URL
 from models.base_model import BaseModel, Base
 from models.user import User
 from models.state import State
@@ -68,12 +67,13 @@ class DBStorage:
             self.__session.delete(obj)
 
     def reload(self):
-        """create all tables in the database"""
-        Base.metadata.create_all(self.__engine)
-
         """
+        create all tables in the database
         create current database session (self.__session) from engine
         """
+        Base.metadata.create_all(self.__engine)
+
+
         _sess = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(_sess)
         self.__session = Session()
