@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
 from models.base_model import BaseModel, Base
-from models.engine.file_storage import FileStorage
+from models import storage
 from models.city import City
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship, backref
@@ -26,7 +26,7 @@ class State(BaseModel, Base):
             to the current State.id
             It will be the FileStorage relationship between State and City
             """
-            all_cities = models.storage.all(City)
+            all_cities = storage.all(City)
             list_city = []
 
             for i in all_cities.values():
