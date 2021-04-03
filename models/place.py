@@ -37,3 +37,42 @@ class Place(BaseModel, Base):
             if value.place_id == self.id:
                 my_dict[key] = value
         return my_dict
+
+    metadata = Base.metadata
+
+    place_amenity = Table(
+        'place_amenity',
+        metadata,
+        Column('place_id', String(60), ForeignKey('places.id'),
+               primary_key=True, nullable=False
+        ),
+        Column('amenity_id', String(60), ForeignKey('amenities.id'),
+               primary_key=True, nullable=False
+        )
+    )
+
+    amenities = relationship('Amenity', viewonly=False,
+                             secondary='place_amenity')
+
+    @property
+        def amenities(self):
+            """
+            Getter attribute that returns the list of Amenity instances
+            """
+            amenities_list = []
+            all_amenities = models.storage.all(Amenity)
+            for k, v in all_amenities.items():
+                if k in self.amentiy_ids:
+                    amenities_list.append(v)
+            return amenities_list
+
+        @amenities.setter
+        def amenities(self, obj=None):
+            """
+            Setter attribute amenities that 
+            handles append method for adding an Amenity.id 
+            to the attribute amenity_ids
+            """
+            if type(obj).__name__ == 'Amenity':
+                new_amenity = 'Amenity' + '.' + obj.id
+                self.amenity_ids.append(new_amenity)
