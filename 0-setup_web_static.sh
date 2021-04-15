@@ -15,13 +15,12 @@ sudo mkdir -p /data/web_static/shared/
 
 # create fake html file
 echo "
-<!DOCTYPE html>
 <html>
   <head>
 	<title>Fake File</title>
   </head>
   <body>
-    <p>Hello World!</p>
+    <p>Hello World</p>
   </body>
 </html>" > /data/web_static/releases/test/index.html
 
