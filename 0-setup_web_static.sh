@@ -29,7 +29,7 @@ echo '
 </html>' > /data/web_static/releases/test/index.html
 
 # create a symbolic link (symlink)
-sudo ln -sf /data/web_static/current /data/web_static/releases/test/
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 # change both the owner and group owner at the same time
 sudo chown -R ubuntu:ubuntu /data/
