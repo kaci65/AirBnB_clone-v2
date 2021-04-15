@@ -14,19 +14,16 @@ sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 
 # create fake html file
-echo '
+echo "
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width initial-scale=1.0">
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Fake File</title>
   </head>
   <body>
     <p>Hello World!</p>
   </body>
-</html>' > /data/web_static/releases/test/index.html
+</html>" > /data/web_static/releases/test/index.html
 
 # create a symbolic link (symlink)
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
