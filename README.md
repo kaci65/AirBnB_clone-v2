@@ -140,3 +140,25 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 (hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
 ```
 <br>
+
+
+### **New Additions**
+Created the following files (MySQL):
+
+    Database Storage Engine (models/engine/db_storage.py)
+    Preparing MySQL server for AirBnB project (setup_mysql_dev.sql)
+    Preparing test for MySQL server (setup_mysql_test.sql)
+
+Updated the following files (MySQL):
+
+    Install Nginx if it not already installed
+    console.py
+    models/__init__.py
+    models/amenity.py
+    models/base_model.py
+    models/city.py
+    models/engine/file_storage.py
+    models/place.py
+    models/review.py
+    models/state.py
+    models/user.py
