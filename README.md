@@ -151,7 +151,6 @@ Created the following files (MySQL):
 
 Updated the following files (MySQL):
 
-    Install Nginx if it not already installed
     console.py
     models/__init__.py
     models/amenity.py
