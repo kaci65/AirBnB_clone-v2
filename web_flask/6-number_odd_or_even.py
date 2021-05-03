@@ -39,8 +39,10 @@ def show_python_text(text='is cool'):
     replace underscore _ symbols with a space
     default value of text is 'is cool'
     """
-    p_text = text.replace('_', ' ')
-    return f"Python {escape(p_text)}"
+    return 'Python %s' % text.replace('_', ' ')
+    # using escape and f strings
+    # p_text = text.replace('_', ' ')
+    # return f"Python {escape(p_text)}"
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
