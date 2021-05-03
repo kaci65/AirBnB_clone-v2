@@ -33,7 +33,7 @@ def show_c_text(text):
 
 @app.route('/python/', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def show_python_text(text = 'is cool'):
+def show_python_text(text='is cool'):
     """
     display “Python ” followed by the value of the text variable
     replace underscore _ symbols with a space
