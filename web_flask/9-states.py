@@ -22,7 +22,8 @@ def states_page_byID(id=None):
             states_lst = states_lst[k]
         else:
             states_lst = None
-    states_lst = storage.all('State').values()
+    else:
+        states_lst = storage.all('State').values()
     return render_template('9-states.html', states_lst=states_lst, id=id)
 
 
