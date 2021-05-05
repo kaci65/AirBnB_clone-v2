@@ -15,7 +15,7 @@ from models.place import Place
 from models.review import Review
 
 
-class DBStorage:
+class DBStorage():
     """initializing class DBstorage"""
 
     __engine = None
@@ -79,7 +79,7 @@ class DBStorage:
 
     def close(self):
         """
-        call remove() or close() method on private session 
+        call remove() or close() method on private session
         attribute (self.__session) on class Session
         """
         self.__session.close()
