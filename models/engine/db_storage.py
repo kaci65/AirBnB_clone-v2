@@ -14,8 +14,12 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+classes = {'State': State, 'City': City,
+           'User': User, 'Place': Place,
+           'Review': Review, 'Amenity': Amenity}
 
-class DBStorage():
+
+class DBStorage:
     """initializing class DBstorage"""
 
     __engine = None
@@ -31,26 +35,23 @@ class DBStorage():
         )
         self.__engine = create_engine(db_url, pool_pre_ping=True)
         if getenv('HBNB_ENV') == 'test':
-            Base.metadata.drop_all(self.__engine)
+                Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         """
         query on all objects depending of the class name (argument cls)
         """
-        if cls:
-            obj_list = self.__session.query(self.classes()[cls])
-        else:
-            obj_list = self.__session.query(State).all()
-            obj_list += self.__session.query(City).all()
-            obj_list += self.__session.query(User).all()
-            obj_list += self.__session.query(Place).all()
-            obj_list += self.__session.query(Amenity).all()
-            obj_list += self.__session.query(Review).all()
-
         my_dict = {}
-        for obj in obj_list:
-            i = obj.__class__.__name__ + "." + obj.id
-            my_dict[i] = obj
+
+        if cls:
+            for row in self.__session.query(cls).all():
+                my_dict.update({'{}.{}'.
+                                format(type(cls).__name__, row.id,): row})
+        else:
+            for key, value in classes.items():
+                for row in self.__session.query(value):
+                    my_dict.update({'{}.{}'.
+                                    format(type(row).__name__, row.id,): row})
         return my_dict
 
     def new(self, obj):
@@ -64,7 +65,10 @@ class DBStorage():
     def delete(self, obj=None):
         """delete from the current database session obj if not None"""
         if obj is not None:
-            self.__session.delete(obj)
+            cls_name = classes[type(obj).__name__]
+
+            self.__session.query(cls_name).\
+                filter(cls_name.id == obj.id).delete()
 
     def reload(self):
         """
